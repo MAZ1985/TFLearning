@@ -25,3 +25,7 @@ resource "azurerm_subnet" "rg_az_subnet" {
   virtual_network_name = azurerm_virtual_network.rg_az_vnetwork.name
   address_prefixes = ["10.0.1.0/24"]
 }
+
+module "windows-vm" {
+    source = "./modules/windows-vm"
+}
