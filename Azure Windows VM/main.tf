@@ -28,4 +28,10 @@ resource "azurerm_subnet" "rg_az_subnet" {
 
 module "windows-vm" {
     source = "./modules/windows-vm"
+
+    resource_group_name = var.rg_name
+    location = var.rg_loc
+
+    subnet_id = azurerm_subnet.rg_az_subnet.id
+
 }
