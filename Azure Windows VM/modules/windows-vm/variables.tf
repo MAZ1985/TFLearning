@@ -24,7 +24,7 @@ variable "allowed_ports" {
 
 variable "storage_name" {
     type = string
-    default = "winstorage"
+    default = "winstorage01"
 }
 
 variable "windows_name" {
