@@ -52,7 +52,7 @@ resource "azurerm_storage_account" "storage_account" {
 }
 
 resource "random_password" "windows_password" {
-  length = 8
+  length = 15
   min_lower = 1
   min_upper = 1
   min_numeric = 1

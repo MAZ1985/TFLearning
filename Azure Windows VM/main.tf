@@ -31,6 +31,7 @@ resource "azurerm_public_ip" "pub_ip" {
   location = var.rg_loc
   resource_group_name = var.rg_name
   allocation_method = "Dynamic"
+  sku = "Standard"
 }
 
 module "windows-vm" {
