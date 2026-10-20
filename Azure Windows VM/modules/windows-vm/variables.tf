@@ -17,7 +17,16 @@ variable "sec_group" {
     description = "Windows Security Group"
 }
 
+#variable "allowed_ports" {
+#    type = list(number)
+#    default = [ 80, 3389 ]
+#}
+
 variable "allowed_ports" {
-    type = list(number)
-    default = [ 80, 3389 ]
+    type = map(number)
+
+    default = {
+      RDP = 3389
+      HTTP = 80
+    }
 }
