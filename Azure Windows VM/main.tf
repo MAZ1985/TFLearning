@@ -30,7 +30,7 @@ resource "azurerm_public_ip" "pub_ip" {
   name = var.public_ip
   location = var.rg_loc
   resource_group_name = var.rg_name
-  allocation_method = "Dynamic"
+  allocation_method = "Static"
   sku = "Standard"
 }
 
