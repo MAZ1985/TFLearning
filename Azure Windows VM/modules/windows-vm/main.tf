@@ -63,7 +63,7 @@ resource "random_password" "windows_password" {
 resource "azurerm_windows_virtual_machine" "windows_vm" {
   name = var.windows_name
   admin_username = "azureuser"
-  admin_password = random_password.windows_password
+  admin_password = random_password.windows_password.result
   location = var.location
   resource_group_name = var.resource_group_name
   network_interface_ids = [azurerm_network_interface.nic.id]
