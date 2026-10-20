@@ -16,15 +16,6 @@ resource "azurerm_network_security_group" "win_sec_group" {
   location = var.location
   resource_group_name = var.resource_group_name
 
-#  for_each = {
-#    for idx, port in var.allowed_ports :
-#    port => {
-#      priority = 100 + idx
-#      port = port
-#    }
-#  }
-
- # for_each = var.allowed_ports
 
   dynamic "security_rule" {
 
@@ -43,4 +34,55 @@ resource "azurerm_network_security_group" "win_sec_group" {
   }
   }
   
+}
+
+resource "azurerm_network_interface_security_group_association" "interface_sec_group" {
+  network_interface_id = azurerm_network_interface.nic.id
+  network_security_group_id = azurerm_network_security_group.win_sec_group.id
+}
+
+# Storage account for boot diagnostic.
+resource "azurerm_storage_account" "storage_account" {
+  name = var.storage_name
+  location = var.location
+  resource_group_name = var.resource_group_name
+  
+  account_tier = "Standard"
+  account_replication_type = "LRS"
+}
+
+resource "random_password" "windows_password" {
+  length = 8
+  min_lower = 1
+  min_upper = 1
+  min_numeric = 1
+  min_special = 1
+  special = true
+}
+
+resource "azurerm_windows_virtual_machine" "windows_vm" {
+  name = var.windows_name
+  admin_username = "azureuser"
+  admin_password = random_password.windows_password
+  location = var.location
+  resource_group_name = var.resource_group_name
+  network_interface_ids = [azurerm_network_interface.nic.id]
+  size = "Standard_DS1_v2"
+
+  os_disk {
+    name = winosdisk
+    caching = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_reference {
+    publisher = "MicrosoftWindowsServer"
+    offer = "WindowsServer"
+    sku = "2022-datacenter-azure-edition"
+    version = "latest"
+  }
+
+  boot_diagnostics {
+    storage_account_uri = azurerm_storage_account.storage_account.primary_blob_endpoint
+  }
 }

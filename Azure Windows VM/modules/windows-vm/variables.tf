@@ -22,11 +22,12 @@ variable "allowed_ports" {
     default = [ 80, 3389 ]
 }
 
-#variable "allowed_ports" {
-#    type = map(any)
-#
-#    default = {
-#      RDP = 3389
-#      HTTP = 80
-#    }
-#}
+variable "storage_name" {
+    type = string
+    default = "win-storage"
+}
+
+variable "windows_name" {
+    type = string
+    default = "win01"
+}
