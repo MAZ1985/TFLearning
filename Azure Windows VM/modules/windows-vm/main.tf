@@ -70,7 +70,7 @@ resource "azurerm_windows_virtual_machine" "windows_vm" {
   size = "Standard_DS1_v2"
 
   os_disk {
-    name = winosdisk
+    name = "winosdisk"
     caching = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
