@@ -26,12 +26,18 @@ resource "azurerm_subnet" "rg_az_subnet" {
   address_prefixes = ["10.0.1.0/24"]
 }
 
+resource "azurerm_public_ip" "pub_ip" {
+  name = var.public_ip
+  location = var.rg_loc
+  resource_group_name = var.rg_name
+  allocation_method = "Dynamic"
+}
+
 module "windows-vm" {
     source = "./modules/windows-vm"
 
     resource_group_name = var.rg_name
     location = var.rg_loc
-
     subnet_id = azurerm_subnet.rg_az_subnet.id
 
 }

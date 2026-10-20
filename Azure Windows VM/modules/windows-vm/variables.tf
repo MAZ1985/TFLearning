@@ -10,3 +10,14 @@ variable "location" {
 variable "subnet_id" {
     type = string
 }
+
+variable "sec_group" {
+    type = string
+    default = "win-sec-group"
+    description = "Windows Security Group"
+}
+
+variable "allowed_ports" {
+    type = list(number)
+    default = [ 80, 3389 ]
+}

@@ -11,3 +11,9 @@ variable "rg_loc" {
     default = "Malaysia West"
     description = "Resource Group location."
 }
+
+variable "public_ip" {
+  type = string
+  default = "test-public-ip"
+  description = "Public IP resource"
+}

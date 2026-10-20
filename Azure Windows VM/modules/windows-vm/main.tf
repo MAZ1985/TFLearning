@@ -10,3 +10,31 @@ resource "azurerm_network_interface" "nic" {
     private_ip_address_allocation = "Dynamic"
   }
 }
+
+resource "azurerm_network_security_group" "win_sec_group" {
+  name = var.sec_group
+  location = var.location
+  resource_group_name = var.resource_group_name
+
+  for_each = {
+    for idx, port in var.allowed_ports :
+    port => {
+      priority = 100 + idx
+      port = port
+    }
+  }
+
+  security_rule = {
+    name = "RDP"
+    priority = each.value.priority
+    direction = "Inbound"
+    access = "Allow"
+    protocol = "Tcp"
+    source_port_range = "*"
+    destination_port_range = each.value.port
+    source_address_prefix = "*"
+    destination_address_prefix ="*"
+  }
+
+  
+}
