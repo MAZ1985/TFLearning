@@ -23,7 +23,7 @@ variable "sec_group" {
 #}
 
 variable "allowed_ports" {
-    type = map(string)
+    type = map(any)
 
     default = {
       RDP = 3389
