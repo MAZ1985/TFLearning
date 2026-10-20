@@ -24,19 +24,23 @@ resource "azurerm_network_security_group" "win_sec_group" {
 #    }
 #  }
 
-  for_each = var.allowed_ports
+ # for_each = var.allowed_ports
 
-  security_rule = {
-    name = each.key
-    priority = 100 + index(keys(var.allowed_ports), each.key)
+  dynamic "security_rule" {
+
+    for_each = var.allowed_ports
+
+    content {
+    name = "Allow-${security_rule.value}"
+    priority = 100 + index(var.allowed_ports, security_rule.value)
     direction = "Inbound"
     access = "Allow"
     protocol = "Tcp"
     source_port_range = "*"
-    destination_port_range = each.value
+    destination_port_range = security_rule.value
     source_address_prefix = "*"
     destination_address_prefix ="*"
   }
-
+  }
   
 }
