@@ -26,6 +26,10 @@ resource "azurerm_subnet" "rg_az_subnet" {
   address_prefixes = ["10.0.1.0/24"]
 }
 
+# Standard sku is "Standard" if not define under resource, however it seem the error stated that we use "Basic"
+# instead of "Standard" hence i define under this resource and need to put IP as static as "Standard" sku can't
+# be implement using "Dynamic". However, maybe its declare as "Standard" but the allocation_method last time i set
+# to "Dynamic" where i only change it to "Static" at the same time when i define the sku to "Standard". Need to test.
 resource "azurerm_public_ip" "pub_ip" {
   name = var.public_ip
   location = var.rg_loc
