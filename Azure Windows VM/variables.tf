@@ -12,8 +12,13 @@ variable "rg_loc" {
     description = "Resource Group location."
 }
 
-variable "public_ip" {
-  type = string
-  default = "test-public-ip"
-  description = "Public IP resource"
+#variable "public_ip" {
+#  type = string
+#  default = "test-public-ip"
+#  description = "Public IP resource"
+#}
+
+variable "vm_count_win" {
+  type = number
+  default = 2
 }

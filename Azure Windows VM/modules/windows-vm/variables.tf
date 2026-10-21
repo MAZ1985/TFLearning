@@ -33,5 +33,9 @@ variable "storage_name" {
 
 variable "windows_name" {
     type = string
-    default = "win01"
+    default = "win"
+}
+
+variable "vm_count_win" {
+  type = number
 }
