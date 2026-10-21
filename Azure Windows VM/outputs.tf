@@ -19,5 +19,5 @@ output "rg_az_subnet" {
 
 output "windows_admin_password" {
     value = module.windows-vm.windows_admin_password
-    sensitive = false
+    sensitive = true
 }
