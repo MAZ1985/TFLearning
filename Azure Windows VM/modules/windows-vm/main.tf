@@ -69,6 +69,7 @@ resource "azurerm_storage_account" "storage_account" {
 }
 
 resource "random_password" "windows_password" {
+  count = var.vm_count_win
   length = 15
   min_lower = 1
   min_upper = 1
@@ -81,7 +82,7 @@ resource "azurerm_windows_virtual_machine" "windows_vm" {
   count = var.vm_count_win
   name = "{$var.windows_name}-{$count.index + 1}"
   admin_username = "azureuser"
-  admin_password = random_password.windows_password.result
+  admin_password = random_password.windows_password[count.index].result
   location = var.location
   resource_group_name = var.resource_group_name
   network_interface_ids = [azurerm_network_interface.nic[count.index].id]
