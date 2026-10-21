@@ -5,7 +5,7 @@
 # to "Dynamic" where i only change it to "Static" at the same time when i define the sku to "Standard". Need to test.
 resource "azurerm_public_ip" "pub_ip" {
   count = var.vm_count_win
-  name = "{$var.windows_name}-pubip-{$count.index + 1}"
+  name = "${var.windows_name}-pubip-${count.index + 1}"
   location = var.location
   resource_group_name = var.resource_group_name
   allocation_method = "Static"
@@ -80,7 +80,7 @@ resource "random_password" "windows_password" {
 
 resource "azurerm_windows_virtual_machine" "windows_vm" {
   count = var.vm_count_win
-  name = "{$var.windows_name}-{$count.index + 1}"
+  name = "${var.windows_name}-${count.index + 1}"
   admin_username = "azureuser"
   admin_password = random_password.windows_password[count.index].result
   location = var.location
