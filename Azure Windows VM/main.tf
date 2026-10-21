@@ -44,6 +44,6 @@ module "windows-vm" {
     resource_group_name = var.rg_name
     location = var.rg_loc
     subnet_id = azurerm_subnet.rg_az_subnet.id
-    pub_ip = azurerm_public_ip.pub_ip.id
+    win_pub_ip = azurerm_public_ip.pub_ip.id
 
 }

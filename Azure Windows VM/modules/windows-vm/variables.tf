@@ -11,7 +11,7 @@ variable "subnet_id" {
     type = string
 }
 
-variable "pub_ip" {
+variable "win_pub_ip" {
     type = string
 }
 
