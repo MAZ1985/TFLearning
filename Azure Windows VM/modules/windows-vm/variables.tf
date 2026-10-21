@@ -11,10 +11,6 @@ variable "subnet_id" {
     type = string
 }
 
-#variable "win_pub_ip" {
-#    type = string
-#}
-
 variable "sec_group" {
     type = string
     default = "win-sec-group"
