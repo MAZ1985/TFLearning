@@ -36,6 +36,8 @@ resource "azurerm_public_ip" "pub_ip" {
   resource_group_name = var.rg_name
   allocation_method = "Static"
   sku = "Standard"
+
+  depends_on = [ azurerm_virtual_network.rg_az_vnetwork ]
 }
 
 module "windows-vm" {
@@ -45,5 +47,7 @@ module "windows-vm" {
     location = var.rg_loc
     subnet_id = azurerm_subnet.rg_az_subnet.id
     win_pub_ip = azurerm_public_ip.pub_ip.id
+
+    depends_on = [ azurerm_virtual_network.rg_az_vnetwork ]
 
 }

@@ -16,3 +16,7 @@ output "rg_vnetwork_subnet" {
 output "rg_az_subnet" {
     value = azurerm_subnet.rg_az_subnet.id
 }
+
+output "windows_admin_password" {
+    value = module.windows-vm.windows_admin_password
+}
