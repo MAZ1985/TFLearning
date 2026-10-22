@@ -19,7 +19,7 @@ resource "azurerm_network_security_group" "win_sec_group" {
     destination_port_range = security_rule.value
     source_address_prefix = "*"
     destination_address_prefix ="*"
-  }
+    }
   }
   
 }
