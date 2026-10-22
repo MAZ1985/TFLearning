@@ -19,7 +19,7 @@ variable "sec_group" {
 
 variable "allowed_ports" {
     type = list(number)
-    default = [ 80, 3389 ]
+    default = [ 80, 3389, 443 ]
 }
 
 variable "storage_name" {
