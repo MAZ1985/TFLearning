@@ -14,5 +14,5 @@ variable "rg_loc" {
 
 variable "vm_count_win" {
   type = number
-  default = 2
+  default = 1
 }
