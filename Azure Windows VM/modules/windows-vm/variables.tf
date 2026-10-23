@@ -29,21 +29,21 @@ variable "security_rules" {
     default = [
     {
         name = "Allow-RDP"
-        priority = 100
+        priority = 101
         direction = "Inbound"
         protocol = "Tcp"
         port = 3389
     },
     {
         name = "Allow-HTTP"
-        priority = 101
+        priority = 102
         direction = "Inbound"
         protocol = "Tcp"
         port = 80
     },
     {
         name = "Allow-HTTPS"
-        priority = 100
+        priority = 103
         direction = "Inbound"
         protocol = "Tcp"
         port = 443
