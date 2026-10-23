@@ -17,9 +17,14 @@ variable "sec_group" {
     description = "Windows Security Group"
 }
 
-variable "allowed_ports" {
+variable "inbound_ports" {
     type = list(number)
     default = [ 80, 3389, 443 ]
+}
+
+variable "outbound_ports" {
+    type = list(number)
+    default = [ 80, 443 ]
 }
 
 variable "storage_name" {
