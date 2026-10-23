@@ -58,7 +58,7 @@ variable "security_rules" {
     {
         name = "Allow-HTTPS"
         priority = 201
-        direction = "Inbound"
+        direction = "Outbound"
         protocol = "Tcp"
         port = 443
     }  
