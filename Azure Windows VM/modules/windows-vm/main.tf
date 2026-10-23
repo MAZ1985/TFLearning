@@ -3,7 +3,7 @@ resource "azurerm_storage_account" "storage_account" {
   name = var.storage_name
   location = var.location
   resource_group_name = var.resource_group_name
-  public_network_access_enabled = false
+  public_network_access_enabled = true
   
   account_tier = "Standard"
   account_replication_type = "LRS"
