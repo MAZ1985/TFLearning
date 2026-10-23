@@ -7,35 +7,18 @@ resource "azurerm_network_security_group" "win_sec_group" {
 
   dynamic "security_rule" {
 
-    for_each = var.inbound_ports
+    for_each = var.security_rules
 
     content {
-    name = "Allow-${security_rule.value}"
-    priority = 100 + index(var.inbound_ports, security_rule.value)
-    direction = "Inbound"
+    name = security_rules.value.name
+    priority = security_rules.value.protocol
+    direction = security_rules.value.direction
     access = "Allow"
-    protocol = "Tcp"
+    protocol = security_rules.value.protocol
     source_port_range = "*"
-    destination_port_range = security_rule.value
+    destination_port_range = security_rules.value.port
     source_address_prefix = "*"
     destination_address_prefix ="*"
     }
   }
-
-  dynamic "security_rule" {
-    for_each = var.outbound_ports
-
-    content {
-      name = "Allow-${security_rule.value}"
-      priority = 200 + index(var.outbound_ports, security_rule.value)
-      direction = "Outbound"
-      access = "Allow"
-      protocol = "Tcp"
-      source_port_range = "*"
-      destination_port_range = security_rule.value
-      source_address_prefix = "*"
-      destination_address_prefix = "*"
-    }
-  }
-  
 }

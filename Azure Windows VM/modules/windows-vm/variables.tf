@@ -17,15 +17,25 @@ variable "sec_group" {
     description = "Windows Security Group"
 }
 
-variable "inbound_ports" {
-    type = list(number)
-    default = [ 80, 3389, 443 ]
+variable "security_rules" {
+    type = list(object({
+      name = string
+      priority = number
+      direction = string
+      protocol = string
+      port = string 
+    }))
 }
 
-variable "outbound_ports" {
-    type = list(number)
-    default = [ 80, 443 ]
-}
+#variable "inbound_ports" {
+#    type = list(number)
+#    default = [ 80, 3389, 443 ]
+#}
+
+#variable "outbound_ports" {
+#    type = list(number)
+#    default = [ 80, 443 ]
+#}
 
 variable "storage_name" {
     type = string
