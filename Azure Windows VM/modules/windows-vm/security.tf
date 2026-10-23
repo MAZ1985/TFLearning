@@ -10,13 +10,13 @@ resource "azurerm_network_security_group" "win_sec_group" {
     for_each = var.security_rules
 
     content {
-    name = security_rules.value.name
-    priority = security_rules.value.protocol
-    direction = security_rules.value.direction
+    name = security_rule.value.name
+    priority = security_rule.value.protocol
+    direction = security_rule.value.direction
     access = "Allow"
-    protocol = security_rules.value.protocol
+    protocol = security_rule.value.protocol
     source_port_range = "*"
-    destination_port_range = security_rules.value.port
+    destination_port_range = security_rule.value.port
     source_address_prefix = "*"
     destination_address_prefix ="*"
     }
