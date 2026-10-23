@@ -11,7 +11,7 @@ resource "azurerm_network_security_group" "win_sec_group" {
 
     content {
     name = security_rule.value.name
-    priority = security_rule.value.protocol
+    priority = security_rule.value.priority
     direction = security_rule.value.direction
     access = "Allow"
     protocol = security_rule.value.protocol

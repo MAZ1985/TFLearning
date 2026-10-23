@@ -23,7 +23,7 @@ variable "security_rules" {
       priority = number
       direction = string
       protocol = string
-      port = string 
+      port = number 
     }))
     
     default = [
