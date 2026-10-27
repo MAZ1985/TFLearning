@@ -13,4 +13,6 @@ resource "azapi_resource_action" "ssh_public_key_gen" {
   resource_id = azapi_resource.ssh_public_key[count.index].id
   action = "generateKeyPair"
   method = "POST"
+
+  response_export_values = ["publicKey", "privateKey"]
 }
