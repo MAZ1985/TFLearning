@@ -4,7 +4,7 @@ resource "azapi_resource" "ssh_public_key" {
   type = "Microsoft.Compute/sshPublicKeys@2022-11-01"
   name = "pub-${var.linux_name}-${count.index + 1}"
   location = var.location
-  parent_id = var.resource_group_name.id
+  parent_id = var.resource_group_id
 }
 
 resource "azapi_resource_action" "ssh_public_key_gen" {
