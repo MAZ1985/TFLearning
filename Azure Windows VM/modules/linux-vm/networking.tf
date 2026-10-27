@@ -23,6 +23,7 @@ resource "azurerm_network_interface" "nic" {
 }
 
 resource "azurerm_network_interface_security_group_association" "interface_sec_group" {
+  count = var.vm_count_lnx
   network_interface_id = azurerm_network_interface.nic[count.index].id
   network_security_group_id = azurerm_network_security_group.lnx_sec_group.id
 }

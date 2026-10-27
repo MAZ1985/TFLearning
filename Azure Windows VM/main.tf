@@ -45,6 +45,7 @@ module "linux-vm" {
     location = var.rg_loc
     subnet_id = azurerm_subnet.rg_az_subnet.id
     vm_count_lnx = var.vm_count_lnx
+    resource_group_id = var.rg_name.id
 
     depends_on = [ azurerm_virtual_network.rg_az_vnetwork ]
 }
