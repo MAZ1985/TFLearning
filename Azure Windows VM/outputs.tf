@@ -18,6 +18,6 @@ output "rg_az_subnet" {
 }
 
 output "windows_admin_password" {
-    value = module.windows-vm.windows_admin_password
+    value = length(module.windows-vm) > 0 ? module.windows_vm.windows_admin_password : null
     sensitive = true
 }
