@@ -4,7 +4,7 @@ variable "resource_group_name" {
 }
 
 variable "resource_group_id" {
-    type = number
+    type = string
 }
 
 variable "location" {
