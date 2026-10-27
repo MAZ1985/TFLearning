@@ -19,5 +19,5 @@ variable "vm_count_win" {
 
 variable "vm_count_lnx" {
   type = number
-  default = 1
+  default = 2
 }

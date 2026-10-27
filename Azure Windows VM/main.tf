@@ -27,6 +27,8 @@ resource "azurerm_subnet" "rg_az_subnet" {
 }
 
 module "windows-vm" {
+
+    count = var.vm_count_win > 0 ? 1 : 0
     source = "./modules/windows-vm"
 
     resource_group_name = var.rg_name
@@ -39,6 +41,8 @@ module "windows-vm" {
 }
 
 module "linux-vm" {
+
+    count = var.vm_count_lnx > 0 ? 1 : 0
     source = "./modules/linux-vm"
 
     resource_group_name = var.rg_name
