@@ -37,3 +37,14 @@ module "windows-vm" {
     depends_on = [ azurerm_virtual_network.rg_az_vnetwork ]
 
 }
+
+module "linux-vm" {
+    source = "./modules/linux-vm"
+
+    resource_group_name = var.rg_name
+    location = var.rg_loc
+    subnet_id = azurerm_subnet.rg_az_subnet.id
+    vm_count_lnx = var.vm_count_lnx
+
+    depends_on = [ azurerm_virtual_network.rg_az_vnetwork ]
+}
