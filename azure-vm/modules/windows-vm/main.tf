@@ -22,7 +22,7 @@ resource "random_password" "windows_password" {
 
 resource "azurerm_windows_virtual_machine" "windows_vm" {
   count = var.vm_count_win
-  name = "${var.windows_name}0${count.index + 1}"
+  name = "${var.windows_name}${format("%02d", count.index + 1)}"
   admin_username = "azureuser"
   admin_password = random_password.windows_password[count.index].result
   location = var.location
